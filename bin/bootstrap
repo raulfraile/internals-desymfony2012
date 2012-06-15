@@ -1,0 +1,23 @@
+#!/usr/bin/env php
+<?php
+
+/*
+ * This file is part of the Symfony Standard Edition.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+set_time_limit(0);
+
+$rootDir = dirname(__DIR__);
+$vendorDir = $rootDir.'/vendor';
+
+
+// php on windows can't use the shebang line from system()
+$interpreter = defined('PHP_WINDOWS_VERSION_BUILD') ? 'php.exe' : '';
+
+// Update the bootstrap files
+system(sprintf('%s %s %s', $interpreter, escapeshellarg($rootDir.'/vendor/bundles/Sensio/Bundle/DistributionBundle/Resources/bin/build_bootstrap.php'), escapeshellarg($rootDir)));
